@@ -1,0 +1,30 @@
+{% extends "checklist/_base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="my-3">Чек-лист</h1>
+            <form method="POST" class="post-form form-group">
+                {% csrf_token %}
+                <div class="card">
+                <ul class="list-group list-group-flush">
+                {% for field in form.visible_fields %}
+                <li class="list-group-item">
+                    <div class="md-form my-1">
+                        <div class="form-check ">
+                        {{ field }}
+                        <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                </ul>
+                </div>
+                <h5 class="my-3"> Я, {{ user.last_name}} {{ user.first_name}}, подтверждаю правильность заполнения документа</h5>
+                <button type="submit" class="btn btn-primary btn-lg my-1">Сохранить Чеклист</button>
+            </form>
+    </div>
+</div>
+{% endblock %}

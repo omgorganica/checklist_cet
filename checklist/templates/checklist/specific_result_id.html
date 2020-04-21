@@ -1,0 +1,107 @@
+{% extends "checklist/_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-6">
+        <table class="table">
+    <thead>
+    <tr>
+      <th scope="row">Поле</th>
+      <th scope="row">Значение</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Дата</td>
+        <td>{{ result.date}}</td>
+    </tr>
+    <tr>
+        <td>Вид техники</td>
+        <td>{{ result.vehicle_type}}</td>
+    </tr>
+    <tr>
+        <td>Номер техники</td>
+        <td>{{ result.registred_number}}</td>
+    </tr>
+    <tr>
+        <td>Сотрудник</td>
+        <td>{{ result.user}}</td>
+    </tr>
+    </tbody>
+</table>
+    <ul class="list-group">
+        <li class="list-group-item">Замечания: <strong>{{ result.q12 }}</strong></li>
+    </ul>
+    </div>
+    <div class="col-md-6">
+        {% autoescape off %}
+        <table class="table">
+    <thead>
+    <tr>
+      <th scope="row">Показатель</th>
+      <th scope="row">Результат</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+        <td>Внешний вид</td>
+        <td>{{ result.q1|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+
+    </tr>
+    <tr>
+        <td>Блок индикации</td>
+        <td>{{ result.q1|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Осветительные приборы</td>
+        <td>{{ result.q3|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Звуковой сигнал</td>
+        <td>{{ result.q4|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Колеса</td>
+        <td>{{ result.q5|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Стояночный тормоз</td>
+        <td>{{ result.q6|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Гидравлика</td>
+        <td>{{ result.q7|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Гидравлика</td>
+        <td>{{ result.q8|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Кресло оператора и ремень безопасности</td>
+        <td>{{ result.q9|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Рулевое управление</td>
+        <td>{{ result.q10|yesno:'<i class="far fa-thumbs-up text-success"></i>,<i class="fas fa-exclamation-circle text-danger"></i>'}}</td>
+    </tr>
+    <tr>
+        <td>Уровень заряда АКБ</td>
+        <td>{{ result.q11 }} %</td>
+    </tr>
+    </tbody>
+        {% endautoescape %}
+</table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <a href="/result" class="btn btn-primary mt-3" role="button">Назад к списку</a>
+    </div>
+</div>
+{% endblock %}

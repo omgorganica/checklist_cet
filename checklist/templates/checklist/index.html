@@ -1,0 +1,46 @@
+{% extends "checklist/_base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <div class="row my-5 d-flex justify-content-center">
+    <div class="col-md-4">
+        {% if user.is_authenticated %}
+        <h1 >Список техники</h1>
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        <form action="" method="POST" class="form-inline" mb-2 >
+            <div class="form-group">
+                {% csrf_token %}
+                <input type="text" class="form-control-lg form-control" id="login_input" placeholder="Ваш логин 4 цифры" name="Login" value= '{% if submitbutton == "Submit" %} {{ firstname }} {% endif %}'/><br><br>
+                 <button type="submit" class="btn btn-outline-primary btn-rounded waves-effect">Войти <i class="fas fa-sign-in-alt"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4">
+        {% include 'checklist/messages.html' %}
+    </div>
+</div>
+<div class="row my-5">
+    {% if user.is_authenticated %}
+    {% for item in vehicle_type_list %}
+    <div class="col-md-3 d-flex justify-content-center flex-column">
+        <div>
+            <a href="{% url 'inside_vehicle_type' %}?vehicle_type={{item.id}}">
+                <div class="view overlay zoom">
+                    <img src="{{ item.image.url }}" alt="test" class="card-img-top">
+                </div>
+            </a>
+        </div>
+        <div class="text-center mt-2">
+            <a href="{% url 'inside_vehicle_type' %}?vehicle_type={{item.id}}" class="font-weight-bolder "> {{ item.name|upper }} </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

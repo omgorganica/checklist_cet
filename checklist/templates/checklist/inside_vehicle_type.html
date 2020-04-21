@@ -1,0 +1,27 @@
+{% extends "checklist/_base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1 class="my-3">Список техники типа {{vehicle_type_name|capfirst}}</h1>
+
+<div class="row">
+    <div class="col-md-6">
+    <div class="card">
+    <ul class="list-group list-group-flush">
+    {% for item in  vehicles_list %}
+    <li class="list-group-item">
+        <a href="{% url 'questionnaire_new' %}?vehicle_type={{item.vehicle_type_id}}&vehicle_registred_number={{item.registred_number}}" class="font-weight-bolder"> {{ item|capfirst }} </a>
+    </li>
+    {% endfor %}
+    </ul>
+    </div>
+    </div>
+
+    <div class="col-md-6 mt-2">
+        <div class="view overlay">
+        <img src="{{ vehicle_type_name.image.url }}" alt="test" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock %}

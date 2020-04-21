@@ -1,0 +1,52 @@
+{% extends "checklist/_base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 mt-3">
+        <div class="form-group">
+            <form method="get" class=" form-inline">
+            {{ filter.form.as_p }}
+            <button type="submit" class="btn btn-primary ml-3">Искать</button>
+        </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h1 class="mb-3">Список оформленных чек листов</h1>
+    <div class="col-md-12">
+            <table class="table table-striped table-bordered ">
+                <thead >
+                    <tr>
+                        <th scope="col" class="font-weight-bolder">№</th>
+                        <th scope="col" class="font-weight-bolder">Дата</th>
+                        <th scope="col" class="font-weight-bolder">Вид техники</th>
+                        <th scope="col" class="font-weight-bolder">№ техники</th>
+                        <th scope="col" class="font-weight-bolder">Пользователь</th>
+                        <th scope="col" class="font-weight-bolder">Результат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for obj in filter.qs %}
+                    <tr>
+                        <th scope="row"  class="font-weight-bolder"><a href="{% url 'specific_result_id' %}?result_id={{obj.id}}">{{ obj.id}}</a></th>
+                        <td  class="font-weight-bolder">{{ obj.date}}</td>
+                        <td class="font-weight-bolder"><a href="{% url 'result_vehicle_type' %}?vehicle_type={{obj.vehicle_type}}">{{ obj.vehicle_type}}</a></td>
+                        <td class="font-weight-bolder"><a href="{% url 'result_vehicle_id' %}?registred_number={{obj.registred_number }}">{{ obj.registred_number}}</a></td>
+                        <td class="font-weight-bolder"><a href="{% url 'result_by_user' %}?user={{obj.user}}">{{ obj.user}}</a></td>
+                        {% if obj.total_score < 11 %}
+                        <td><i class="fas fa-exclamation-circle text-danger"></i></td>
+                        {% else %}
+                        <td><i class="far fa-thumbs-up text-success"></i></td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        
+    </div>
+</div>
+
+{% endblock %}
