@@ -3,5 +3,5 @@ django-bootstrap-form==3.4
 django-filter==2.2.0
 django-materializecss-form==1.1.17
 django-widget-tweaks==1.4.6
-Pillow==7.0.0
+Pillow==8.1.1
 
